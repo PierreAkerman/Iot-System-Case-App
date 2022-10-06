@@ -4,9 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartApp"
+        xmlns:viewModels="clr-namespace:SmartApp.MVVM.ViewModels"
+        xmlns:components="clr-namespace:SmartApp.Components"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"        
+        Height="720" 
+        Width="1280">
 
-    </Grid>
+    <Window.DataContext>
+        <viewModels:MainViewModel/>
+    </Window.DataContext>
+
+    <Border Background="#333333" CornerRadius="12">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <ContentControl Grid.Row="0" Content="{Binding CurrentView}" />
+            <components:MenuComponent Grid.Row="1" Margin="0 -140 0 0" />
+        </Grid>
+
+    </Border>
+
 </Window>

@@ -34,15 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\" />
-    <Folder Include="MVVM\Cores\" />
-    <Folder Include="MVVM\Models\" />
-    <Folder Include="MVVM\Views\" />
-    <Folder Include="MVVM\ViewModels\" />
-    <Folder Include="Resources\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Devices" Version="1.38.1" />
   </ItemGroup>
 
