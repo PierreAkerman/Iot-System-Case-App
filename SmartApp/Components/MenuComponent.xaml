@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartApp.Components" 
-             xmlns:cores="clr-namespace:SmartApp.MVVM.Cores" d:DataContext="{d:DesignInstance Type=cores:ObservableObject}"
+             xmlns:cores="clr-namespace:SmartApp.MVVM.Cores" 
+             xmlns:viewmodels="clr-namespace:SmartApp.MVVM.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
              mc:Ignorable="d" 
              >
     <Border Style="{StaticResource menuBar}">

@@ -4,24 +4,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartApp.MVVM.ViewModels"
-             xmlns:components="clr-namespace:SmartApp.Components"
+             xmlns:components="clr-namespace:SmartApp.Components" d:DataContext="{d:DesignInstance Type=local:MainViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280">
+
+
     <Border CornerRadius="12">
         <Border.Background>
-            <ImageBrush Opacity="0.75" ImageSource="/Assets/Images/kitchen.jpeg" />
+            <ImageBrush Opacity="0.5" ImageSource="/Assets/Images/kitchen.jpeg" />
         </Border.Background>
 
-        <Grid Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid Margin="40 10">
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="600"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Text="{Binding Title}" />
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock Grid.Column="0" Text="{Binding Title}" FontWeight="Bold" FontSize="42" Foreground="White"/>
 
-            <ItemsControl Grid.Row="1" x:Name="deviceTileListView" ItemsSource="{Binding DeviceItems}">
+                <Grid Margin="0 10 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
 
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Temperature" Foreground="White" FontSize="22" FontWeight="SemiBold" Margin="0 0 10 0" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Humidity" Foreground="White" FontSize="22" FontWeight="SemiBold" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Temperature}" Foreground="White" FontSize="32" FontWeight="SemiBold" Margin="0 0 10 0" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Humidity}" Foreground="White" FontSize="32" FontWeight="SemiBold" />
+                </Grid>
+            </StackPanel>
+
+
+            <ItemsControl Grid.Column="1" x:Name="deviceTileListView"  HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding DeviceItems}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <components:TileComponent 

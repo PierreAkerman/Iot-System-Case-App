@@ -11,13 +11,17 @@ namespace SmartApp.MVVM.ViewModels
     {
         public RelayCommand KitchenViewCommand { get; set; }
         public KitchenViewModel KitchenViewModel { get; set; }
-        private object _currentView;
+        
 
         public MainViewModel()
         {
             KitchenViewModel = new KitchenViewModel();
             KitchenViewCommand = new RelayCommand(x => { CurrentView = KitchenViewModel; });
+
+            CurrentView = KitchenViewModel;
         }
+
+        private object _currentView;
         public object CurrentView
         {
             get { return _currentView; }
