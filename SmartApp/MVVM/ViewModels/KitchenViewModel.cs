@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 
@@ -67,8 +66,8 @@ namespace SmartApp.MVVM.ViewModels
 
         private async Task PopulateDeviceItemsAsync()
         {
-            //var result = registryManager.CreateQuery("select * from devices where location = 'kitchen'");
-            var result = registryManager.CreateQuery("select * from devices");
+            var result = registryManager.CreateQuery("SELECT * FROM devices WHERE properties.reported.location = 'kitchen'");
+            //var result = registryManager.CreateQuery("select * from devices");
 
             if (result.HasMoreResults)
             {

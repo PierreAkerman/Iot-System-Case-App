@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartApp", "SmartApp\SmartApp.csproj", "{74684909-032E-44F2-966C-F6EA3BEE12EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartApp", "SmartApp\SmartApp.csproj", "{74684909-032E-44F2-966C-F6EA3BEE12EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunctionsApi", "AzureFunctionsApp\AzureFunctionsApi.csproj", "{9D504DB0-06FF-486E-BB5D-5649594632ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Device.SmartLamp", "Device.SmartLamp\Device.SmartLamp.csproj", "{558631A9-5600-4D25-B4ED-B495824A65BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{74684909-032E-44F2-966C-F6EA3BEE12EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74684909-032E-44F2-966C-F6EA3BEE12EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74684909-032E-44F2-966C-F6EA3BEE12EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D504DB0-06FF-486E-BB5D-5649594632ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D504DB0-06FF-486E-BB5D-5649594632ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D504DB0-06FF-486E-BB5D-5649594632ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D504DB0-06FF-486E-BB5D-5649594632ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{558631A9-5600-4D25-B4ED-B495824A65BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{558631A9-5600-4D25-B4ED-B495824A65BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{558631A9-5600-4D25-B4ED-B495824A65BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{558631A9-5600-4D25-B4ED-B495824A65BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

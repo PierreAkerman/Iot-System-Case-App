@@ -9,7 +9,7 @@
              d:DesignHeight="720" d:DesignWidth="1280">
 
 
-    <Border CornerRadius="12">
+    <Border x:Name="kitchen" CornerRadius="12">
         <Border.Background>
             <ImageBrush Opacity="0.5" ImageSource="/Assets/Images/kitchen.jpeg" />
         </Border.Background>
@@ -30,14 +30,14 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Temperature" Foreground="White" FontSize="22" FontWeight="SemiBold" Margin="0 0 10 0" />
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Temperature" Foreground="White" FontSize="22" FontWeight="SemiBold" Margin="0 0 5 0" />
                     <TextBlock Grid.Column="1" Grid.Row="0" Text="Humidity" Foreground="White" FontSize="22" FontWeight="SemiBold" />
 
-                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Temperature}" Foreground="White" FontSize="32" FontWeight="SemiBold" Margin="0 0 10 0" />
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Temperature}" Foreground="White" FontSize="32" FontWeight="SemiBold" Margin="0 0 5 0" />
                     <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Humidity}" Foreground="White" FontSize="32" FontWeight="SemiBold" />
                 </Grid>
             </StackPanel>

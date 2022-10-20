@@ -11,7 +11,7 @@ namespace SmartApp.MVVM.Models
         public string DeviceId { get; set; } = "";
         public string DeviceName { get; set; } = "";
         public string DeviceType { get; set; } = "";
-        public string Location { get; set; } = "";
+        public bool DeviceState { get; set; }
         public string IconActive { get; set; } = "";
         public string IconInActive { get; set; } = "";
         public string StateActive { get; set; } = "";
