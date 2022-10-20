@@ -2,15 +2,19 @@
 using Newtonsoft.Json;
 using SmartApp.MVVM.Models;
 using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using Dapper;
 
 namespace SmartApp.Components
 {
     public partial class TileComponent : UserControl, INotifyPropertyChanged
     {
-        //private readonly RegistryManager _registryManager = RegistryManager.CreateFromConnectionString("HostName=pierre-hub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=yj/6v90HFCyCEFhxC2vQR3GgVFnF4s5p2y5k85FhRGs=");
+        private readonly RegistryManager _registryManager = RegistryManager.CreateFromConnectionString("HostName=pierre-hub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=yj/6v90HFCyCEFhxC2vQR3GgVFnF4s5p2y5k85FhRGs=");
+        private readonly string _connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Min dator\\source\\repos\\Systemutveckling\\IotSystemCaseApp\\Device.SmartLamp\\Data\\deviceDB.mdf\";Integrated Security=True;Connect Timeout=30";
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -110,6 +114,16 @@ namespace SmartApp.Components
                 IsChecked = deviceItem.DeviceState;
             }
             catch { }
+        }
+
+        private async void BtnRemoveDevice_OnClick(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var deviceItem = (DeviceItem)button!.DataContext;
+            btnRemoveDevice.IsEnabled = false;
+            await _registryManager.RemoveDeviceAsync(deviceItem.DeviceId);
+            using IDbConnection connection = new SqlConnection(_connectionString);
+            await connection.ExecuteAsync($"DELETE FROM DeviceInfo WHERE DeviceId = @DeviceId", new { DeviceId = deviceItem.DeviceId });
         }
     }
 }

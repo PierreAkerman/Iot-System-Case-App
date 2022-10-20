@@ -45,7 +45,7 @@ namespace Device.SmartLamp
             {
                 tbStateMessage.Text = "Generating DeviceID";
                 _deviceId = Guid.NewGuid().ToString();
-                await conn.ExecuteAsync("INSERT INTO DeviceInfo (DeviceId,DeviceName,DeviceType,Location,Owner) VALUES (@DeviceId, @DeviceName, @DeviceType, @Location, @Owner)", new { DeviceId = _deviceId, DeviceName = "WPF SmartLamp", DeviceType = "light", Location = "kitchen", Owner = "Pierre" });
+                await conn.ExecuteAsync("INSERT INTO DeviceInfo (DeviceId,DeviceName,DeviceType,Location,Owner) VALUES (@DeviceId, @DeviceName, @DeviceType, @Location, @Owner)", new { DeviceId = _deviceId, DeviceName = "SmartLamp", DeviceType = "light", Location = "kitchen", Owner = "Pierre" });
             }
 
             var device_ConnectionString = await conn.QueryFirstOrDefaultAsync<string>("SELECT ConnectionString FROM DeviceInfo WHERE DeviceId = @DeviceId", new { DeviceId = _deviceId });
