@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartApp", "SmartApp\SmartA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunctionsApi", "AzureFunctionsApp\AzureFunctionsApi.csproj", "{9D504DB0-06FF-486E-BB5D-5649594632ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Device.SmartLamp", "Device.SmartLamp\Device.SmartLamp.csproj", "{558631A9-5600-4D25-B4ED-B495824A65BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Device.SmartLamp", "Device.SmartLamp\Device.SmartLamp.csproj", "{558631A9-5600-4D25-B4ED-B495824A65BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Device.Thermostat", "Device.Thermostat\Device.Thermostat.csproj", "{C09DAA55-8369-4778-85C8-DA760B920B07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{558631A9-5600-4D25-B4ED-B495824A65BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{558631A9-5600-4D25-B4ED-B495824A65BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{558631A9-5600-4D25-B4ED-B495824A65BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C09DAA55-8369-4778-85C8-DA760B920B07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09DAA55-8369-4778-85C8-DA760B920B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09DAA55-8369-4778-85C8-DA760B920B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C09DAA55-8369-4778-85C8-DA760B920B07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

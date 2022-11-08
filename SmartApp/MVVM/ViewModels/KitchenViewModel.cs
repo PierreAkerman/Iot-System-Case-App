@@ -12,10 +12,11 @@ namespace SmartApp.MVVM.ViewModels
 {
     internal class KitchenViewModel
     {
-        private DispatcherTimer timer;
+        private DispatcherTimer _timer;
         private ObservableCollection<DeviceItem> _deviceItems;
         private List<DeviceItem> _tempList;
         private readonly RegistryManager registryManager = RegistryManager.CreateFromConnectionString("HostName=pierre-hub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=yj/6v90HFCyCEFhxC2vQR3GgVFnF4s5p2y5k85FhRGs=");
+        
         public KitchenViewModel()
         {
             _tempList = new List<DeviceItem>();
@@ -25,20 +26,21 @@ namespace SmartApp.MVVM.ViewModels
         }
 
         public string Title { get; set; } = "Kitchen & Dining";
-        public string Temperature { get; set; } = "23 °C";
-        public string Humidity { get; set; } = "34 %";
+
+        //public string Temperature { get; set; } = "23 °C";
+        //public string Humidity { get; set; } = "34 %";
         public IEnumerable<DeviceItem> DeviceItems => _deviceItems;
 
 
         private void SetInterval(TimeSpan interval)
         {
-            timer = new DispatcherTimer()
+            _timer = new DispatcherTimer()
             {
                 Interval = interval
             };
 
-            timer.Tick += new EventHandler(timer_tick);
-            timer.Start();
+            _timer.Tick += new EventHandler(timer_tick);
+            _timer.Start();
         }
 
         private async void timer_tick(object sender, EventArgs e)
@@ -110,7 +112,6 @@ namespace SmartApp.MVVM.ViewModels
                                 device.StateInActive = "DISABLE";
                                 break;
                         }
-
                         _deviceItems.Add(device);
                     }
                     else { }
