@@ -69,7 +69,7 @@ namespace Device.Thermostat
             if (string.IsNullOrEmpty(_deviceId))
             {
                 tbConnectingMessage.Text = "Generating DeviceId";
-                //_deviceId = "Kitchen-Thermometer";
+                _deviceId = "Thermostat_Kitchen";
                 await connection.ExecuteAsync(
                     "INSERT INTO DeviceInfo (DeviceId, DeviceType, DeviceName, Location, Owner) " +
                     "VALUES (@DeviceId, @DeviceType, @DeviceName, @Location, @Owner)",
@@ -128,14 +128,14 @@ namespace Device.Thermostat
                     if (_previousTemperature != currentTemp)
                     {
                         twinCollection["temperature"] = currentTemp + "°C";
-                        thermostatData.Text += ($"{DateTime.Now}: Current temperature is {currentTemp}, Previously it was {_previousTemperature}\n");
+                        thermostatData.Text += ($"{DateTime.Now}: Current Temperature {currentTemp}, Previous {_previousTemperature}\n");
                         _previousTemperature = currentTemp;
                     }
 
                     if (_previousHumidity != currentHumidity)
                     {
                         twinCollection["humidity"] = currentHumidity + "%";
-                        thermostatData.Text += ($"{DateTime.Now}: Current Humidity is {currentHumidity}, Previously it was {_previousHumidity}\n");
+                        thermostatData.Text += ($"{DateTime.Now}: Current Humidity {currentHumidity}, Previous {_previousHumidity}\n");
                         _previousHumidity = currentHumidity;
                     }
                     await _deviceClient.UpdateReportedPropertiesAsync(twinCollection);

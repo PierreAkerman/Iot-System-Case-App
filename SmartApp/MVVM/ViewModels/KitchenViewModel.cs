@@ -7,15 +7,17 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using SmartApp.MVVM.Cores;
 
 namespace SmartApp.MVVM.ViewModels
 {
-    internal class KitchenViewModel
+    internal class KitchenViewModel : ObservableObject
     {
         private DispatcherTimer _timer;
         private ObservableCollection<DeviceItem> _deviceItems;
         private List<DeviceItem> _tempList;
-        private readonly RegistryManager registryManager = RegistryManager.CreateFromConnectionString("HostName=pierre-hub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=yj/6v90HFCyCEFhxC2vQR3GgVFnF4s5p2y5k85FhRGs=");
+        private readonly RegistryManager _registryManager = RegistryManager.CreateFromConnectionString("HostName=pierre-hub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=yj/6v90HFCyCEFhxC2vQR3GgVFnF4s5p2y5k85FhRGs=");
+
         
         public KitchenViewModel()
         {
@@ -26,11 +28,42 @@ namespace SmartApp.MVVM.ViewModels
         }
 
         public string Title { get; set; } = "Kitchen & Dining";
+        
 
-        //public string Temperature { get; set; } = "23 °C";
-        //public string Humidity { get; set; } = "34 %";
-        public IEnumerable<DeviceItem> DeviceItems => _deviceItems;
 
+        private ThermostatDevice _thermostatDevice = new ThermostatDevice();
+        public ThermostatDevice ThermostatDevice
+        {
+            get => _thermostatDevice;
+            set
+            {
+                _thermostatDevice = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _temperature;
+        public string Temperature
+        {
+            get { return _temperature; }
+            set
+            {
+                _temperature = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _humidity;
+
+        public string Humidity
+        {
+            get { return _humidity; }
+            set
+            {
+                _humidity = value;
+                OnPropertyChanged();
+            }
+        }
 
         private void SetInterval(TimeSpan interval)
         {
@@ -46,16 +79,18 @@ namespace SmartApp.MVVM.ViewModels
         private async void timer_tick(object sender, EventArgs e)
         {
             await PopulateDeviceItemsAsync();
+            PopulateThermostatSensor();
             await UpdateDeviceItemsAsync();
         }
 
+        public IEnumerable<DeviceItem> DeviceItems => _deviceItems;
         private async Task UpdateDeviceItemsAsync()
         {
             _tempList.Clear();
 
             foreach (var item in _deviceItems)
             {
-                var device = await registryManager.GetDeviceAsync(item.DeviceId);
+                var device = await _registryManager.GetDeviceAsync(item.DeviceId);
                 if (device == null)
                     _tempList.Add(item);
             }
@@ -66,9 +101,25 @@ namespace SmartApp.MVVM.ViewModels
             }
         }
 
+        private async void PopulateThermostatSensor()
+        {
+            var result = _registryManager.CreateQuery("SELECT * FROM Devices WHERE properties.reported.deviceName = 'kitchen_thermostat'");
+            
+            foreach (var twin in await result.GetNextAsTwinAsync())
+            {
+                try { _thermostatDevice.Temperature = twin.Properties.Reported["temperature"]; }
+                catch { }
+                try { _thermostatDevice.Humidity = twin.Properties.Reported["humidity"]; }
+                catch { }
+            }
+
+            Temperature = _thermostatDevice.Temperature;
+            Humidity = _thermostatDevice.Humidity;
+        }
+
         private async Task PopulateDeviceItemsAsync()
         {
-            var result = registryManager.CreateQuery("SELECT * FROM devices WHERE properties.reported.location = 'kitchen'");
+            var result = _registryManager.CreateQuery("SELECT * FROM devices WHERE properties.reported.location = 'kitchen'");
             //var result = registryManager.CreateQuery("select * from devices");
 
             if (result.HasMoreResults)
